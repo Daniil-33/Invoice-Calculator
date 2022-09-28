@@ -1,29 +1,35 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+ 	<div id="app">
+		<div class="container">
+			<h3 >Vue Invoice Calc</h3>
+
+			<div class="invoice__form-wrap">
+				<InvoiceForm />
+			</div>
+
+			<div class="invoice__table-wrap">
+				<InvoiceTable />
+			</div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import { defineComponent } from "vue";
+import InvoiceForm from "./components/Layout/InvoiceForm.vue";
+import InvoiceTable from "./components/Layout/InvoiceTable.vue";
 
-@Component({
-  components: {
-    HelloWorld,
+export default defineComponent({
+	components: {
+    InvoiceForm,
+	InvoiceTable
   },
-})
-export default class App extends Vue {}
+});
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import "./assets/styles/styles.scss";
+</style>
+<style>
+@import url("./assets/styles/reset.css");
 </style>

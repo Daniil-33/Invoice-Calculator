@@ -1,0 +1,268 @@
+// UI
+$light-grey: #E2EAED;
+$primary: #0d6efd;
+$danger: #dc3545;
+$light: #fff;
+
+$default-font-family: Avenir, Helvetica, Arial, sans-serif;;
+$default-font-size: 16px;
+$default-line-height: 1.3;
+$default-transition: all .2s linear;
+$default-border: 1px solid $light-grey;
+$default-border-radius: 6px;
+
+* {
+    font-family: $default-font-family;
+}
+
+h3 {
+	font-size: 24px;
+    line-height: $default-line-height;
+}
+
+.container {
+	max-width: 1260px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.input {
+	padding: 10px;
+	border-radius: $default-border-radius;
+	border: $default-border;
+	border-radius: $default-border-radius;
+	transition: $default-transition;
+	font-size: $default-font-size;
+	width: 100%;
+
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	&[type=number] {
+		-moz-appearance: textfield;
+	}
+
+	&:focus {
+		border-color: #86b7fe;
+		box-shadow: 0 0 0 2.5px rgba(13, 110, 253, 0.25);
+	}
+
+	&--invalid {
+		border-color: $danger;
+		
+		&:focus {
+			border-color: $danger;
+			box-shadow: 0 0 0 2.5px rgba(220, 53, 69, 0.25);
+		}
+	}
+}
+
+.btn {
+	padding: 10px;
+	font-size: $default-font-size;
+	border-radius: $default-border-radius;
+	color: $light;
+	transition: $default-transition;
+
+	&:hover {
+		opacity: 0.9;
+	}
+
+	&--primary {
+		background-color: $primary;
+	}
+
+	&--danger {
+		background-color: $danger;
+	}
+}
+
+.check {
+	position: relative;
+	display: block;
+	min-height: 18px;
+	min-width: 18px;
+	cursor: pointer;
+
+	& > input {
+		display: none;
+	}
+
+	& > .check__square {
+		display: block;
+		width: 18px;
+		height: 18px;
+		position: absolute;
+		border-radius: 3px;
+		border: $default-border;
+		background: #fff;
+		top: 0;
+		left: 0;
+	}
+	
+	& > input:checked + .check__square {
+		background: $primary;
+	}
+
+	& > input:checked + .check__square:after {
+		content: '';
+		position: absolute;
+		left: 2.5px;
+    	top: 2.5px;
+		display: block;
+		width: 11px;
+    	height: 7px;
+		border: 2px solid #fff;
+		border-width: 0 0 2px 2px;
+		transform: rotate(-45deg);
+	}
+}
+
+// Layout
+.invoice {
+	&__form-wrap {
+		margin-top: 20px;
+	}
+
+	&__form {
+		display: flex;
+		align-items: flex-start;
+		width: 100%;
+
+		&-inputs {
+			max-width: 85%;
+			width: 100%;
+			display: flex;
+			align-items: flex-start;
+			gap: 10px;
+			margin-right: 10px;
+
+			&--price,
+			&--qta {
+				max-width: 25%;
+			}
+		}
+
+		&-input {
+			&-wrap {
+				width: 100%;
+			}
+
+			&-error {
+				font-size: 12px;
+				color: $danger;	
+			}
+		}
+
+		&-btn {
+			margin-left: auto;
+		}
+	}
+
+	&__table-wrap {
+		margin-top: 20px;
+	}
+
+	&__table {
+		& table {
+			border-collapse: collapse;
+  			width: 100%;
+
+			display: block;
+			overflow-x: auto;
+			white-space: nowrap;
+		}
+
+		& tbody {
+			display: table;
+    		width: 100%;
+		}
+
+		& td,
+		& th {
+			border: $default-border;
+  			padding: 10px;
+		}
+
+		& tr:nth-child(even){
+			background-color: #f2f2f2;
+		}
+		
+		& tr:hover {
+			background-color: #ddd;
+		}
+
+		& th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: #ddd;
+		}
+
+        &-product-name {
+            max-width: 430px;
+            word-break: break-all;
+            white-space: normal;
+        }
+
+		&-footer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 10px;
+		}
+
+		&-placeholder {
+			text-align: center;
+			font-weight: bold;
+			font-size: 18px;
+		}
+
+		&-total {
+			font-weight: bold;
+		}
+	}
+}
+
+// Media Queries
+@media (max-width: 768px) {
+	.invoice {
+		&__form {
+			flex-direction: column;
+
+			&-inputs {
+				flex-wrap: wrap;
+				max-width: 100%;
+
+				&--price,
+				&--qta {
+					max-width: calc(50% - 5px);
+				}
+			}
+
+			&-btn {
+				margin-left: unset;
+				width: 100%;
+				margin-top: 10px;
+			}
+		}
+	}
+}
+
+@media (max-width: 575px) {
+	.invoice {
+		&__form {
+			flex-direction: column;
+
+			&-inputs {
+				&--price,
+				&--qta {
+					max-width: 100%;
+				}
+			}
+		}
+	}
+}
